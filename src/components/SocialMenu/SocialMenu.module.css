@@ -1,0 +1,19 @@
+.social-menu {
+    margin: 31px auto;
+  }
+
+  .social-menu__link--instagram {
+    background-image: url('../images/instagram-blue.svg');
+  } 
+  
+  .social-menu__link--vk {
+    background-image: url('../images/vk-blue.svg');
+  } 
+  
+  .social-menu__link--twitter {
+    background-image: url('../images/twitter-blue.svg');
+  } 
+  
+  .social-menu__link--youtube {
+    background-image: url('../images/youtube-blue.svg');
+  }

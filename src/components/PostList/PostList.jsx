@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./PostList.module.css"
 
 const POSTS = [
     {
@@ -32,15 +33,15 @@ const POSTS = [
 
 const PostList = () => {
   return (
-     <ul className="posts__list">
+     <ul className={styles.posts__list}> 
      {POSTS.map(({ id, title, content, date}) => (
 
-     <li key={id} className="posts__item">
-      <div className="post__heading">
-          <h3 className="posts__title">{title}</h3>
+     <li key={id} className={styles.posts__item}>
+      <div className={styles.post__heading}>
+          <h3 className={styles.posts__title}>{title}</h3>
         
-					  <p className="posts__content">{content}</p>
-					  <time className="posts__date" dateTime={date}>
+					  <p className={styles.posts__content}>{content}</p>
+					  <time className={styles.posts__date} dateTime={date}>
 					  	{date}
 					  </time>
             </div>

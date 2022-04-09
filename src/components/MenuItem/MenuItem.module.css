@@ -1,0 +1,10 @@
+.menu-item__item {
+    margin-bottom: 56px;
+    text-align: right;
+  }
+  
+  .menu-item__link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+  }
