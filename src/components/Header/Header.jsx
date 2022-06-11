@@ -1,72 +1,65 @@
 import React, {useState} from "react";
-import cn from "classnames";
+import { Link } from "react-router-dom";
+
 import MenuItem from "../MenuItem";
 import SocialMenu from "../SocialMenu";
+
+import cn from "classnames";
 import styles from "./Header.module.css"
+import logo from "../../images/logo.png"
+import { MENU_PAGES, SOCIAL_MENU } from "./store";
 
-const MENU_LINKS = [
-  {id: '1', title: "_главная", link: "/main_page"},
-  {id: '2', title: '_посты', link: "/posts"},
-  {id: '3', title: '_категории', link: "/categories"},
-  {id: '4', title: '_полезное', link: "/useful"},
-  {id: '5', title: '_обо мне', link: "/about_me"}
-
-]
 
 const Header = () => {
     const [isActive, setIsActive] = useState(false);
     
+
     return (
         <header className={styles.header}>
           <nav className={styles.header__nav}>
-            <a className={styles.header__logo} href="/">
-              <img src="" alt="logo" width="126" height="23" />
-            </a>
+            <Link className={styles.header__logo} to="/">
+              <img src={logo} alt="logo" width="126" height="23" />
+            </Link>
             <button
-              className={cn(styles.header__burger, { [styles.header__menu]: isActive, })}
+              className={cn(styles.header__burger, {
+                [styles.header__burger__active]: isActive,
+              })}
               type="button"
               aria-label="открыть меню"
-              onClick={() => {
-                setIsActive(true);
-              }} />
-              {isActive && (
-                <div className={styles.menu-item}>
-              <p className={styles.menu-item__title}>{">"}меню</p>
-              <button
-                className={styles.menu-item__hide}
-                type="button"
-                aria-label="закрыть меню"
-              ></button>
-             <ul
-               className={cn(styles.menu-item__hide, { [styles.menu-item]: isActive })}
+              onClick={() => setIsActive(true)}
+               />
+              <div
+          className={cn(styles.MainMenu, {
+            [styles.MainMenu__active]: isActive,
+          })}
+        >
+          <p className={styles.MainMenu__title}>&gt; меню</p>
+          <button
+            className={styles.MainMenu__close}
+            type="button"
+            aria-label="закрыть меню"
+            onClick={() => setIsActive(false)}
+          />
+          <ul className={styles.MainMenu__list}>
+            {MENU_PAGES.map(({ id, title, href }) => (
+              <MenuItem key={id} text={title} link={href} />
+            ))}
+          </ul>
+          <ul className={styles.SocialMenu}>
+            {SOCIAL_MENU.map(({ id, title, href, SocialIcon }) => (
+              <SocialMenu
+                key={id}
+                className={styles.SocialMenu__link}
+                href={href}
+                aria={title}
               >
-              )
-              {MENU_LINKS.map(({id, link, title}) => (
-                  <MenuItem key={id} title={title} link={link}/> 
-                ))} 
-              </ul>
-              <ul className={styles.social-menu}>
-                <SocialMenu
-                  className={styles.social-menu__link, styles.social-menu__link__instagram}
-                 aria="instagram"
-                />
-                <SocialMenu
-                  className={styles.social-menu__link, styles.social-menu__link__vk}
-                  aria="vk"
-                />
-                <SocialMenu
-                  className={styles.social-menu__link, styles.social-menu__link__twitter}
-                  aria="twitter"
-                />
-                <SocialMenu
-                  className={styles.social-menu__link, styles.social-menu__link__youtube}
-                  aria="youtube"
-                />
-              </ul>
-            </div>
-          </nav>
-        </header>      
-    );
-  };
-  
+                <SocialIcon className={styles.icon} />
+              </SocialMenu>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    </header>
+  );
+};
 export default Header;

@@ -1,10 +1,23 @@
-.menu-item__item {
-    margin-bottom: 56px;
-    text-align: right;
+.MenuItem__item {
+  margin-bottom: 56px;
+  text-align: right;
+}
+
+.MenuItem__link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+.MenuItem__link__active {
+  color: #fff;
+  background-color: #0500ff;
+}
+.MenuItem__link:not([href]) {
+  color: #fff;
+  background-color: #0500ff;
+}
+@media (min-width: 768px) {
+  .MenuItem__item {
+    margin: 0;
   }
-  
-  .menu-item__link {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 700;
-  }
+}

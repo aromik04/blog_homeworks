@@ -1,55 +1,42 @@
-import React from "react";
-import styles from "./PostList.module.css"
-
-const POSTS = [
-    {
-        id: "1",
-        title: "Начинаю изучать JavaScript",
-        content:
-            "Задача организации, в особенности же консультация с широким активом позволяет выполнять важные задания по разработке форм развития. Повседневная практика показывает, что новая модель организационной деятельности представляет собой интересный эксперимент проверки систем массового участия.",
-       
-        date: "11/09/2021"   
-    
-    },
-
-     {   id: "2",
-        title: "Время практики",
-        content:
-            "Задача организации, в особенности же консультация с широким активом позволяет выполнять важные задания по разработке форм развития. Повседневная практика показывает, что новая модель организационной деятельности представляет собой интересный эксперимент проверки систем массового участия.",
-       
-        date: "11/09/2021"   
-    
-},
-
-    {    id: "3",
-        title: "Начинаю изучать JavaScript",
-        content:
-            "Задача организации, в особенности же консультация с широким активом позволяет выполнять важные задания по разработке форм развития. Повседневная практика показывает, что новая модель организационной деятельности представляет собой интересный эксперимент проверки систем массового участия.",
-            
-        date: "11/09/2021"
-    
-},
-];
-
+ import React from "react";
+import styles from "./PostList.module.css";
+import { POSTS } from "./posts";
 const PostList = () => {
-  return (
-     <ul className={styles.posts__list}> 
-     {POSTS.map(({ id, title, content, date}) => (
-
-     <li key={id} className={styles.posts__item}>
-      <div className={styles.post__heading}>
-          <h3 className={styles.posts__title}>{title}</h3>
-        
-					  <p className={styles.posts__content}>{content}</p>
-					  <time className={styles.posts__date} dateTime={date}>
-					  	{date}
-					  </time>
-            </div>
-			  	</li>
-		  	))}
-      
-	  	</ul>
-  
+	return (
+		<section className={styles.posts}>
+			<h2 className={styles.posts__title}>_новые посты</h2>
+			<ul className={styles.posts__list}>
+				{POSTS.map(
+					({ id, title, content, date, img, num, imgMob, alt }) => (
+						<li key={id} className={styles.posts__item}>
+							<div className={styles.posts__heading}>
+								<h3>{title}</h3>
+								<time className={styles.posts__date} dateTime={date}>
+									{date.toDateString()}
+								</time>
+							</div>
+							<div className={styles.posts__content}>
+								<picture className={styles.picture}>
+									<source media="(min-width: 768px)" srcSet={img} />
+									<img
+										className={styles.posts__image}
+										src={imgMob}
+										alt={alt}
+										width="115"
+										height="115"
+									/>
+								</picture>
+								<p className={styles.posts__text}>{content}</p>
+								<span className={styles.posts__num}>{num} </span>
+							</div>
+						</li>
+					)
+				)}
+			</ul>
+			<a className={styles.posts__more} href="/posts">
+				остальные...
+			</a>
+		</section>
 	);
 };
-export default PostList;
+export default PostList; 
